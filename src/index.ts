@@ -1,9 +1,9 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
 import { Router } from './routes/index'
-
-dotenv.config()
+import { connect } from './db/config'
+connect()
 
 const app = express()
 const PORT = 3000
