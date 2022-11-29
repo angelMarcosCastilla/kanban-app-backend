@@ -1,21 +1,19 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import './routes/index'
-import {Router} from './routes/index'
-dotenv.config();
+import express from 'express'
+import cors from 'cors'
+import dotenv from 'dotenv'
+import { Router } from './routes/index'
 
-const app = express();
-const PORT = 3000;
+dotenv.config()
 
-app.use(cors());
-app.use(express.json());
+const app = express()
+const PORT = 3000
 
-app.get("/", (_ , res) => {
-    res.send("Hello World!!!!1");
+app.use(cors())
+app.use(express.json())
+
+app.get('/', (_, res) => {
+  res.send('Hello World!!!!1')
 })
 
-app.use("/v1", Router)
-app.listen(PORT, () => {
-})
-
+app.use('/v1', Router)
+app.listen(PORT, () => {})

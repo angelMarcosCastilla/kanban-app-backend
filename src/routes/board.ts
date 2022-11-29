@@ -1,10 +1,9 @@
-import express from 'express';
+import express from 'express'
 
-const Router = express.Router();
+const Router = express.Router()
 
 Router.get('/', (_req, res) => {
-  res.json({ message: 'Hello World board' });
+  res.json({ message: 'Hello World board' })
 })
 
-
-export { Router};
+export { Router }
