@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
+import './routes/index'
+import {Router} from './routes/index'
 dotenv.config();
 
 const app = express();
@@ -14,7 +15,7 @@ app.get("/", (_ , res) => {
     res.send("Hello World!!!!1");
 })
 
+app.use("/v1", Router)
 app.listen(PORT, () => {
-  console.log("server init")
 })
 
