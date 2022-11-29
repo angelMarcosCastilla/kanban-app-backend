@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import usersModels from '../models/users.models'
 
 import { Response, Request } from 'express'
+import { errorHandler } from '../utils/error.handler'
 
 export const createUser = async (req: Request, res: Response) => {
   try {
@@ -9,7 +9,7 @@ export const createUser = async (req: Request, res: Response) => {
     const data = await usersModels.create({ name, userEmail, password })
     res.json({ message: 'User created', data })
   } catch (err) {
-    res.json({ message: 'Error', err })
+    errorHandler(res, 'ERROR_CREATE_USER')
   }
 }
 
@@ -18,6 +18,6 @@ export const getUsers = async (_req: Request, res: Response) => {
     const data = await usersModels.find()
     res.json({ message: 'all users', data })
   } catch (err) {
-    res.json({ message: 'Error', err })
+    errorHandler(res, 'ERROR_GET_ALL_USERS')
   }
 }
