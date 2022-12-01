@@ -16,4 +16,6 @@ app.get('/', (_, res) => {
 })
 
 app.use('/v1', Router)
-app.listen(PORT, () => {})
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
