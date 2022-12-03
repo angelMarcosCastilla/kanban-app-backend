@@ -4,7 +4,8 @@ import jwt from 'jsonwebtoken'
 export const createToken = (user: userToken) => {
   try {
     const secret = process.env.JWT_SECRET as string
-    jwt.sign(user, secret, { expiresIn: '5h' })
+    const token = jwt.sign(user, secret, { expiresIn: '5h' })
+    return token
   } catch (err) {
     console.log(err)
   }

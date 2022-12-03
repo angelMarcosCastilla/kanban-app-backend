@@ -10,21 +10,28 @@ export const login = async (req: Request, res: Response) => {
     const user = await findUserLogin(email)
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' })
+      return res
+        .status(404)
+        .json({ message: 'User not found', field: 'email', isLogged: false })
     }
 
     const passwordHash = user.password
     const isPasswordCorrect = await comparePassword(password, passwordHash)
 
     if (!isPasswordCorrect) {
-      return res.status(400).json({ message: 'Invalidate password' })
+      return res.status(400).json({
+        message: 'Invalidate password',
+        field: 'password',
+        isLogged: false
+      })
     }
 
     const { name, userEmail, _id } = user
     const token = createToken({ name, userEmail })
     const data = { name, userEmail, token, _id }
+
     res.status(200)
-    res.json({ message: 'login success', data })
+    res.json({ message: 'login success', data, isLogged: true })
   } catch (error) {
     errorHandler(res, 'ERROR_LOGIN')
   }
