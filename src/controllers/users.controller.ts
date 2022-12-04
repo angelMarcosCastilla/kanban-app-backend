@@ -7,7 +7,11 @@ import { registerUser } from '../services/user'
 export const createUser = async (req: Request, res: Response) => {
   try {
     const data = await registerUser(req.body)
-    res.json({ message: 'User created', data })
+    if (data.hasUser) {
+      console.log('existe el usuario')
+      return res.json({ message: 'This user already exists', error: true })
+    }
+    res.json({ message: 'User created', data: data.data })
   } catch (err) {
     errorHandler(res, 'ERROR_CREATE_USER')
   }
