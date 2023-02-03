@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { RequestWithUserInfo } from '../interfaces/expressCustonType'
 import { findUserLogin } from '../services/auth'
 import { comparePassword } from '../utils/encript'
 import { errorHandler } from '../utils/error.handler'
@@ -34,5 +35,13 @@ export const login = async (req: Request, res: Response) => {
     res.json({ message: 'login success', data, isLogged: true })
   } catch (error) {
     errorHandler(res, 'ERROR_LOGIN')
+  }
+}
+
+export const logout = async (_req: RequestWithUserInfo, res: Response) => {
+  try {
+    res.json({ message: 'logout success', isLogged: false })
+  } catch (error) {
+    errorHandler(res, 'ERROR_LOGOUT')
   }
 }
