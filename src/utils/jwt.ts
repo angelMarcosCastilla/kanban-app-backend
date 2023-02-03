@@ -14,7 +14,8 @@ export const createToken = (user: userToken) => {
 export const verifyToken = (token: string) => {
   try {
     const secret = process.env.JWT_SECRET as string
-    jwt.verify(token, secret)
+    const data = jwt.verify(token, secret)
+    return data
   } catch (error) {
     console.log(error)
   }
